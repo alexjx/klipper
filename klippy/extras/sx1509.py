@@ -50,7 +50,7 @@ class SX1509(object):
         # Setup Clock Divider
         self._mcu.add_config_cmd("i2c_modify_bits oid=%d reg=%02x"
                                  " clear_set_bits=%02x%02x" % (
-                                     self._oid, REG_MISC, 0, (5 << 4)))
+                                     self._oid, REG_MISC, 0, (4 << 4)))
         # Transfer all regs with their initial cached state
         for _reg, _data in self.reg_dict.items():
             self._mcu.add_config_cmd("i2c_write oid=%d data=%02x%04x" % (
