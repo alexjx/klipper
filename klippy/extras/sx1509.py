@@ -46,7 +46,7 @@ class SX1509(object):
         # Enable Oscillator
         self._mcu.add_config_cmd("i2c_modify_bits oid=%d reg=%02x"
                                  " clear_set_bits=%02x%02x" % (
-                                     self._oid, REG_CLOCK, 0, (1 << 6)))
+                                     self._oid, REG_CLOCK, 0, (5 << 6)))
         # Setup Clock Divider
         self._mcu.add_config_cmd("i2c_modify_bits oid=%d reg=%02x"
                                  " clear_set_bits=%02x%02x" % (
