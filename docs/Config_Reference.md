@@ -1646,6 +1646,27 @@ cs_pin:
 #   measurements.
 ```
 
+### [lis2dw]
+
+Support for LIS2DW accelerometers.
+
+```
+[lis2dw]
+cs_pin:
+#   The SPI enable pin for the sensor. This parameter must be provided.
+#spi_speed: 5000000
+#   The SPI speed (in hz) to use when communicating with the chip.
+#   The default is 5000000.
+#spi_bus:
+#spi_software_sclk_pin:
+#spi_software_mosi_pin:
+#spi_software_miso_pin:
+#   See the "common SPI settings" section for a description of the
+#   above parameters.
+#axes_map: x, y, z
+#   See the "adxl345" section for information on this parameter.
+```
+
 ### [mpu9250]
 
 Support for MPU-9250, MPU-9255, MPU-6515, MPU-6050, and MPU-6500
@@ -3421,7 +3442,7 @@ run_current:
 
 ### [tmc2240]
 
-Configure a TMC2240 stepper motor driver via SPI bus. To use this
+Configure a TMC2240 stepper motor driver via SPI bus or UART. To use this
 feature, define a config section with a "tmc2240" prefix followed by
 the name of the corresponding stepper config section (for example,
 "[tmc2240 stepper_x]").
@@ -3439,6 +3460,9 @@ cs_pin:
 #spi_software_miso_pin:
 #   See the "common SPI settings" section for a description of the
 #   above parameters.
+#uart_pin:
+#   The pin connected to the TMC2240 DIAG1/SW line. If this parameter
+#   is provided UART communication is used rather then SPI.
 #chain_position:
 #chain_length:
 #   These parameters configure an SPI daisy chain. The two parameters
