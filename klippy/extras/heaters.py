@@ -61,6 +61,9 @@ class Heater:
         gcode.register_mux_command("SET_HEATER_TEMPERATURE", "HEATER",
                                    self.name, self.cmd_SET_HEATER_TEMPERATURE,
                                    desc=self.cmd_SET_HEATER_TEMPERATURE_help)
+        gcode.register_mux_command("SET_HEATER_MIN_TEMP", "HEATER",
+                                   self.name, self.cmd_SET_HEATER_MIN_TEMP,
+                                   desc=self.cmd_SET_HEATER_MIN_TEMP_help)
     def set_pwm(self, read_time, value):
         if self.target_temp <= 0.:
             value = 0.
@@ -134,12 +137,17 @@ class Heater:
             smoothed_temp = self.smoothed_temp
             last_pwm_value = self.last_pwm_value
         return {'temperature': round(smoothed_temp, 2), 'target': target_temp,
-                'power': last_pwm_value}
+                'power': last_pwm_value, "min_temp": self.min_temp, "max_temp": self.max_temp}
     cmd_SET_HEATER_TEMPERATURE_help = "Sets a heater temperature"
     def cmd_SET_HEATER_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
         pheaters = self.printer.lookup_object('heaters')
         pheaters.set_temperature(self, temp)
+    cmd_SET_HEATER_MIN_TEMP_help = "Sets the min temperature of heater"
+    def cmd_SET_HEATER_MIN_TEMP(self, gcmd):
+        temp = gcmd.get_float('TEMP', 0.)
+        self.min_temp = temp
+        self.sensor.setup_minmax(self.min_temp, self.max_temp)
 
 
 ######################################################################
