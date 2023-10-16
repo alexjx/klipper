@@ -5,3 +5,4 @@ out
 .config.old
 klippy/.version
 klippy/extras/gcode_shell_command.py
+/ktcc/
