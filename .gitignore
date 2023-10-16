@@ -5,4 +5,8 @@ out
 .config.old
 klippy/.version
 klippy/extras/gcode_shell_command.py
-/ktcc/
+klippy/extras/alignment.py
+klippy/extras/ktcclog.py
+klippy/extras/tool.py
+klippy/extras/toolgroup.py
+klippy/extras/toollock.py
