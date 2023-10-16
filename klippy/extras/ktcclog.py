@@ -1,1 +1,0 @@
-../../ktcc/ktcclog.py

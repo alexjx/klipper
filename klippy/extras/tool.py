@@ -1,1 +1,0 @@
-../../ktcc/tool.py
